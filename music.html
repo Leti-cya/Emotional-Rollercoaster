@@ -2,28 +2,28 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <!--Character encodig for text (important for special characters)-->
+    <!-- Character encoding for text (important for special characters) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--Makes the website mobile-responsive-->
+    <!-- Makes the website mobile-responsive -->
     <title>Now Playing</title>
-
     <link rel="stylesheet" href="style.css">
     <!--Link to external CSS file-->
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text&family=Orbitron:wght@500&family=Playfair+Display&family=Raleway&display=swap" rel="stylesheet">
   </head>
-
   <body>
+    <!-- Header -->
     <header>
       <h1>Emotional Rollercoaster</h1>
-      <p id="now-playing">Now Playing: <span id="song-title"></span> by <span id="artist-name"></span></p> <!--Show the current song's title and artist-->
+      <p id="now-playing">Now Playing: <span id="song-title"></span> by <span id="artist-name"></span></p>
+      <!-- Show the current song's title and artist -->
     </header>
 
-    <!--Album-->
+    <!-- Album Art -->
     <div class="album-art">
       <img src="" alt="Album Art" id="album-img" />
     </div>
 
-    <!--Audio-->
+    <!-- Audio Player -->
     <div class="audio-player">
       <iframe
         width="100%"
@@ -35,34 +35,38 @@
       </iframe>
     </div>
 
-    <!--Main Content-->
+    <!-- Main Content -->
     <main>
-      <!--Mood-->
+      <!-- Mood Section -->
       <section id="mood-section" class="mood-section">
-        <h2>Feeling: <span id="mood"></span></h2> <!--Dynamic mood heading (will change with song)-->
-        <p id="mood-description"></p> <!--Description about the currrent mood-->
+        <h2>Feeling: <span id="mood"></span></h2>
+        <!-- Dynamic mood heading (will change with song) -->
+        <p id="mood-description"></p>
+        <!-- Description about the current mood -->
       </section>
 
-      <!--Lyrics/Quote-->
+      <!-- Lyrics / Quote Section -->
       <section id="quote-section" class="quote-section">
-        <blockquote id="song-quote"></blockquote> <!--Quote from the songor related to the mood-->
+        <blockquote id="song-quote"></blockquote>
+        <!-- Quote from the song or related to the mood -->
       </section>
     </main>
 
-    <!--Footer-->
+    <!-- Footer -->
     <footer>
       <p id="fun-fact"></p>
       <p>Curated chaos.</p>
     </footer>
 
-    <!--Next Song-->
+    <!-- Next Song Button -->
     <div style="text-align: center; margin: 30px 0">
       <button id="nextSongBtn">Next</button>
     </div>
 
-    <!--Background animation-->
-    <div id="particles-container"></div>
+    <!-- Background Animation Container -->
+    <div class="particles-container" id="particles-container"></div>
 
-    <script src="script.js"></script> <!--Link to external JavaScript-->
+    <!--Link to external JavaScript-->
+    <script src="script.js"></script>
   </body>
 </html>
