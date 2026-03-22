@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <!--Character encodig for text (important for special characters)-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Makes the website mobile-responsive-->
+    <title>Now Playing</title>
+
+    <link rel="stylesheet" href="style.css">
+    <!--Link to external CSS file-->
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text&family=Orbitron:wght@500&family=Playfair+Display&family=Raleway&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <header>
+      <h1>Emotional Rollercoaster</h1>
+      <p id="now-playing">Now Playing: <span id="song-title"></span> by <span id="artist-name"></span></p> <!--Show the current song's title and artist-->
+    </header>
+
+    <!--Album-->
+    <div class="album-art">
+      <img src="" alt="Album Art" id="album-img" />
+    </div>
+
+    <!--Audio-->
+    <div class="audio-player">
+      <iframe
+        width="100%"
+        height="166"
+        scrolling="no"
+        frameborder="no"
+        allow="autoplay"
+        src="">
+      </iframe>
+    </div>
+
+    <!--Main Content-->
+    <main>
+      <!--Mood-->
+      <section id="mood-section" class="mood-section">
+        <h2>Feeling: <span id="mood"></span></h2> <!--Dynamic mood heading (will change with song)-->
+        <p id="mood-description"></p> <!--Description about the currrent mood-->
+      </section>
+
+      <!--Lyrics/Quote-->
+      <section id="quote-section" class="quote-section">
+        <blockquote id="song-quote"></blockquote> <!--Quote from the songor related to the mood-->
+      </section>
+    </main>
+
+    <!--Footer-->
+    <footer>
+      <p id="fun-fact"></p>
+      <p>Curated chaos.</p>
+    </footer>
+
+    <!--Next Song-->
+    <div style="text-align: center; margin: 30px 0">
+      <button id="nextSongBtn">Next</button>
+    </div>
+
+    <!--Background animation-->
+    <div id="particles-container"></div>
+
+    <script src="script.js"></script> <!--Link to external JavaScript-->
+  </body>
+</html>
