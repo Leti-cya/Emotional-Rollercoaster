@@ -151,23 +151,62 @@ body.fade {
   pointer-events: none;
 }
 
+/* Base particle */
 .particle {
   position: absolute;
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.2);
-  animation: floatParticles 10s linear infinite;
-  animation-delay: calc(-1s * var(--i));
+  opacity: 0.6;
 }
 
-@keyframes floatParticles {
-  0% { transform: translateY(0) scale(1); opacity: 0.5; }
-  50% { transform: translateY(-100vh) scale(1,2); opacity: 1; }
-  100% { transform: translateY(-200vh) scale(0.8); opacity: 0; }
+/* RAIN (TOP → DOWN) */
+.particle.rain {
+  top: -10px;
+  background: rgba(173,216,230,0.5);
+  height: 14px;
+  width: 1px;
+  border-radius: 2px;
+  animation: rainFall linear infinite;
+}
+
+@keyframes rainFall {
+  0% { transform: translateY(0); opacity: 0; }
+  20% { opacity: 0.7; }
+  100% { transform: translateY(120vh); opacity: 0; }
+}
+
+/* BUBBLES (BOTTOM → UP) */
+.particle.bubbles {
+  bottom: -10px;
+  background: rgba(163, 196, 217, 0.4);
+  animation: bubbleRise linear infinite;
+}
+
+@keyframes bubbleRise {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  30% { opacity: 0.7; }
+  100% { transform: translateY(-120vh) scale(2); opacity: 0; }
+}
+
+/* FEATHER (RANDOM FLOATING) */
+.particle.float {
+  top: 50%;
+  background: rgba(61, 43, 31, 0.55);
+  animation: floatSoft ease-in-out infinite;
+}
+
+@keyframes floatSoft {
+  0% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-50px) translateX(20px); }
+  100% { transform: translateY(0) translateX(-20px); }
 }
 
 /* Easter Egg: chaos mode animation */
+body.chaos-mode {
+  animation: chaosMode 1s infinite;
+}
+
 @keyframes chaosMode {
   0% { transform: rotate(0deg); background-color: #fff; }
   25% { transform: rotate(5deg); background-color: #ff0; }

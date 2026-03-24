@@ -13,7 +13,7 @@ const songs = [
         quoteBorderColor: "#bfae9a", // Minimal soft border
         font: "'Crimson Text', serif", // Bookish, reflective feel
         audioURL: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1996251703&color=%23967356&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&show_artwork=false&show_title=false",
-        image: "https://th.bing.com/th/id/OIP.XWMa6uuLgMouZqoMwCiC0QHaHa?rs=1&pid=ImgDetMain",
+        image: "https://tse1.explicit.bing.net/th/id/OIP.KskqRrVuyhiN9U2JgCBkZQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
         fact: "Music can evoke powerful emotions and memories, making it a universal language of the soul.",
         particleType: "feathers"
     },
@@ -33,6 +33,23 @@ const songs = [
         image: "https://i.pinimg.com/736x/3a/dc/8c/3adc8c146f8b07e1d27df272905b2740.jpg",
         fact: "Songs with dreamy synths often activate the imagination and emotional centers of the brain.",
         particleType: "dreamy-rain"
+    },
+    {
+        title: "Drunk-Dazed",
+        artist: "ENHYPEN",
+        mood: "Chaotic & Hypnotic",
+        description: "A dizzy, intoxicating spiral of sound.",
+        quote: '"Geoul sogui naega natseolgiman hae"',
+        color: "#ff0033",
+        bgColor: "#0a0000",
+        textColor: "#ffffff",
+        quoteBgColor: "#1a0000",
+        quoteBorderColor: "#ff0033",
+        font: "'Orbitron', sans-serif",
+        audioURL: "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A1314216916&color=7c0820&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&show_artwork=false&show_title=false",
+        image: "https://i1.sndcdn.com/artworks-pNs25GwhN84X-0-t1080x1080.jpg",
+        fact: "High BPM songs increase adrenaline.",
+        particleType: "bubbles"
     }
 ];
 
@@ -102,25 +119,45 @@ function loadSong(index) {
 // Particle effect function
 function addParticleEffect(type) {
     const container = document.getElementById('particles-container');
-    container.innerHTML = ''; // Clear previous particles
-    for (let i = 0; i < 30; i++) {
-        const particle = document.createElement('div');
-        particle.classList.add('particle');
-        particle.style.setProperty('--i', i);
-        if(type === 'feathers') particle.style.backgroundColor = 'rgba(255,255,255,0.3)';
-        if(type === 'dreamy-rain') particle.style.backgroundColor = 'rgba(173,216,230,0.2)';
-        container.appendChild(particle);
+    container.innerHTML = '';
+
+    for (let i = 0; i < 35; i++) {
+        const p = document.createElement('div');
+        p.classList.add('particle');
+
+        // random horizontal position
+        p.style.left = Math.random() * 100 + "vw";
+
+        // random delay + duration
+        p.style.animationDuration = (4 + Math.random() * 6) + "s";
+        p.style.animationDelay = Math.random() * 5 + "s";
+
+        // 🎯 DIFFERENT BEHAVIOR PER TYPE
+        if (type === "dreamy-rain") {
+            p.classList.add("rain");
+        } 
+        else if (type === "bubbles") {
+            p.classList.add("bubbles");
+        } 
+        else {
+            p.classList.add("float"); // feathers/random
+        }
+
+        container.appendChild(p);
     }
 }
 
 // Easter egg: chaos mode
+let chaosActive = false;
+
 function triggerEasterEgg() {
-    body.style.animation = "chaosMode 2s ease-in-out";
-    setTimeout(() => {
-        body.style.animation = "";
-        alert("Congratulations! You've unlocked the chaos mode!");
-        songCount = 0; // Reset count
-    }, 2000);
+    chaosActive = true;
+
+    // SHOW ALERT IMMEDIATELY
+    alert("Chaos mode unlocked 😈");
+
+    // ADD CHAOS CLASS (instead of temporary animation)
+    document.body.classList.add("chaos-mode");
 }
 
 // Initial load
@@ -146,10 +183,19 @@ function getRandomIndex(excludeIndex) {
 
 // Next song button
 document.getElementById("nextSongBtn").addEventListener("click", () => {
-    const nextIndex = getRandomIndex(currentSongIndex);
-    body.classList.add("fade"); // Add fade effect
+    let nextIndex;
+
+    // 👇 FORCE 10TH SONG TO BE DRUNK-DAZED
+    if (songCount === 9) {
+        nextIndex = songs.findIndex(song => song.title === "Drunk-Dazed");
+    } else {
+        nextIndex = getRandomIndex(currentSongIndex);
+    }
+
+    body.classList.add("fade");
+
     setTimeout(() => {
         loadSong(nextIndex);
         body.classList.remove("fade");
-    }, 800); // Wait for fade animation to complete
+    }, 800);
 });
